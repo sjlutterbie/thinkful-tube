@@ -47,8 +47,8 @@ function searchFormEventHandler() {
 function queryYouTubeAPI(searchTerm, callback) {
     // Queries the YouTube API for a list of videos matching the provided search term
 
-    // Load processing gif (TODO: Turn back on when it's no longer an annoyance)
-    // loadProcessingImage("https://arkenea.com/blog/wp-content/uploads/2016/04/Ajax-loader.gif");
+    // Load processing gif
+    loadProcessingImage("https://arkenea.com/blog/wp-content/uploads/2016/04/Ajax-loader.gif");
 
     // Specify search query terms
     const searchURL = "https://www.googleapis.com/youtube/v3/search";
@@ -62,7 +62,7 @@ function queryYouTubeAPI(searchTerm, callback) {
     };
     
     // Execute search query
-    console.log($.getJSON(searchURL, query, callback));
+    $.getJSON(searchURL, query, callback);
 
 }
     
@@ -77,30 +77,61 @@ function queryYouTubeAPI(searchTerm, callback) {
         $('.js-search-results').html(processingHTML);
     }
     
+    function hideProcessingImage() {
+        //Hide the "search processing" image
+        
+        $('.processing-image').hide();
+    }
+    
     function receiveSearchResults(data) {
         // When a search result is returned, process the search results
         
-        //Extract results
-        data.items.map(item => {
-            let videoID = item.id.videoId;
-            let videoTitle = item.snippet.title;
-            let videoDesc = item.snippet.description;
-            let videoThumbnail = item.snippet.thumbnails.medium.url;
-            let channelID = item.snippet.channelId;
-            let channelTitle = item.snippet.channelTitle;
-            
-            console.log(`videoID: ${videoID}`);
-            console.log(`videoTitle: ${videoTitle}`);
-            console.log(`videoDesc: ${videoDesc}`);
-            console.log(`videoThumbnail: ${videoThumbnail}`);
-            console.log(`channelID: ${channelID}`);
-            console.log(`channelTitle: ${channelTitle}`);
-            
-        });
+        console.log(`"receiveSearchResults" was called.`);
+        
+        data.items.map((item, index) => renderSearchResult(item));
         
     }
     
+function renderSearchResult(item) {
+
+    // Hide processing image
+    hideProcessingImage();
+
+    // Extract relevant result information
+    let videoID = item.id.videoId;
+        let videoURL = `https://www.youtube.com/watch?v=${videoID}`;
+    let videoTitle = item.snippet.title;
+    let videoDesc = item.snippet.description;
+    let videoThumbnail = item.snippet.thumbnails.medium.url;
+    let channelID = item.snippet.channelId;
+        let channelURL = `https://www.youtube.com/channel/${channelID}`;
+    let channelTitle = item.snippet.channelTitle;
+
+    // Build result HTML
+    let resultHTML = `
+        <div class="search-result">
+            <div class="thumbnail">
+                <a href="${videoURL}" title="YouTube: ${videoTitle}">
+                    <img src="${videoThumbnail}"
+                         alt="Link to YouTube video, ${videoTitle}"
+                         style="width: 200px"/>
+                </a>
+            </div>
+            <div class="search-result-info">
+                <p class="search-result-title">
+                    <a href="${videoURL}" target="_blank">${videoTitle}</a>
+                </p>
+                <p class="search-result-channel"> Channel:&nbsp;
+                    <a href="${channelURL}">${channelTitle}</a>
+                </p>
+            </div>
+         </div>
+    `;
     
+    // Render result
+    $('.js-search-results').append(resultHTML);
+    
+}    
     
     
     
