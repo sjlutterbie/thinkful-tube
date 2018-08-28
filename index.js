@@ -1,6 +1,8 @@
-//When a user clicks on the "Search" button...
+'use strict';
 
 function searchFormEventHandler() {
+
+    // When a user preses on the "Search" button...
     $('main').on('click', '.js-search-submit', function(e) {
         e.preventDefault()
     
@@ -30,27 +32,42 @@ function searchFormEventHandler() {
     });
 }
 
-function clearSearchResults() {
-    // Clears the search results display and hides the prev/next nav buttons
-
-    //Clear existing search results
-    $('.js-search-results').html('');
+    function clearSearchResults() {
+        // Clears the search results display and hides the prev/next nav buttons
     
-    //Hide search navigation links
-    $('.js-search-nav-prev').hide();
-    $('.js-search-nav-next').hide();
+        //Clear existing search results
+        $('.js-search-results').html('');
         
-}
+        //Hide search navigation links
+        $('.js-search-nav-prev').hide();
+        $('.js-search-nav-next').hide();
+            
+    }
 
 function queryYouTubeAPI(searchTerm) {
+    // Queries the YouTube API for a list of videos matching the provided search term
     /* TODO: Query the YouTube API for a list of videos matching the provided search term */
-        /* TODO: (If responses slow), load processing gif */
-        /* TODO: Validate/format the search query string (if necessary) */
-        /* TODO: Format the search query */
-        /* TODO: Execute the search query */
-        /* TODO: Return the results */
+    
+    // Load processing gif
+    loadProcessingImage("https://arkenea.com/blog/wp-content/uploads/2016/04/Ajax-loader.gif");
+
+    /* TODO: Validate/format the search query string (if necessary) */
+    /* TODO: Format the search query */
+    /* TODO: Execute the search query */
+    /* TODO: Return the results */
 
 }
+    
+    function loadProcessingImage(img) {
+        // Load "search in progress" image into search results
+
+        let processingHTML = `
+        <img src="${img}"
+             class="processing-image js-processing-image"
+             alt="Search in progress indicator"/>`;
+             
+        $('.js-search-results').html(processingHTML);
+    }
     
     
 /* TODO: When a search result is return, render the search results */
