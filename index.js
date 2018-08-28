@@ -61,13 +61,9 @@ function queryYouTubeAPI(searchTerm, callback, pageToken) {
         key: `${APIKey}`
     };
     
-    console.log(pageToken);
-    
     if (pageToken) {
         query.pageToken = `${pageToken}`;
     }
-    
-    console.log(query);
     
     // Execute search query
     $.getJSON(searchURL, query, callback);
@@ -93,8 +89,6 @@ function queryYouTubeAPI(searchTerm, callback, pageToken) {
     
     function receiveSearchResults(data) {
         // When a search result is returned, process the search results
-        
-        console.log(data);
         
         // Collect etag and pageTokens for future navigation
         let nextPageToken = data.nextPageToken;
