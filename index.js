@@ -88,8 +88,29 @@ function queryYouTubeAPI(searchTerm, callback) {
         
         console.log(`"receiveSearchResults" was called.`);
         
-        data.items.map((item, index) => renderSearchResult(item));
+        console.log(data);
         
+        // Collect etag and pageTokens for future navigation
+        let eTag = data.etag;
+        let nextPageToken = data.nextPageToken;
+        let prevPageToken = data.prevPageToken;
+        
+        //Render search results
+        
+        data.items.map((item, index) =>
+            renderSearchResult(item)
+        );
+        
+        //Render navigation buttons
+        if (prevPageToken) {
+            renderNavButton('Prev', 'js-search-nav-prev', eTag, prevPageToken);
+        }
+        
+        if (nextPageToken) {
+            renderNavButton('Next', 'js-search-nav-next', eTag, nextPageToken);
+        
+        }
+
     }
     
 function renderSearchResult(item) {
@@ -132,23 +153,35 @@ function renderSearchResult(item) {
     $('.js-search-results').append(resultHTML);
     
 }    
+
+function renderNavButton (text, jsClass, etag, pageToken) {
+    // Render a "Prev" button
     
+    console.log(etag);
     
+    // Build 
+    let buttonHTML = `
+        <button class="search-nav-button ${jsClass}"
+            data-etag=${etag}
+            data-pageToken="${pageToken}">
+                ${text}</button>
+    `;
+    
+    // Render HTML
+    $('.search-nav').append(buttonHTML);
+    
+}
+
+
+// TODO: Run search based on etag & pagetoken
+
+// TODO: event Handler for prev/next nav buttons
+
     
 /* TODO: When a search result is return, render the search results */
     /* TODO: Show the "Search results" header, if hidden */
 
-    /* TODO: Process the search query result, summarizing the overall contents */
-        /* TODO: Number of results, pev/next links, etc. */
-    
-    /* TODO: Extract the relevant data from a YouTube API search result */
-    
-    /* TODO: Render the search result HTML for a given result */
-    
-    /* TODO: Update the prev/next navigation buttons */
-        /* TODO: If page=1, hide "prev" button */
-        /* TODO: If page=last(?), hide "next" button */
-        
+
 /* TODO: When the user clicks on a video thumbnail... */
     /* TODO: Play the video in a lightbox */
     
