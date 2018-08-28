@@ -27,7 +27,7 @@ function searchFormEventHandler() {
             clearSearchResults();
             
             // Call the search query function
-            queryYouTubeAPI(searchTerm);
+            queryYouTubeAPI(searchTerm, receiveSearchResults);
         
     });
 }
@@ -44,17 +44,25 @@ function searchFormEventHandler() {
             
     }
 
-function queryYouTubeAPI(searchTerm) {
+function queryYouTubeAPI(searchTerm, callback) {
     // Queries the YouTube API for a list of videos matching the provided search term
-    /* TODO: Query the YouTube API for a list of videos matching the provided search term */
-    
-    // Load processing gif
-    loadProcessingImage("https://arkenea.com/blog/wp-content/uploads/2016/04/Ajax-loader.gif");
 
-    /* TODO: Validate/format the search query string (if necessary) */
-    /* TODO: Format the search query */
-    /* TODO: Execute the search query */
-    /* TODO: Return the results */
+    // Load processing gif (TODO: Turn back on when it's no longer an annoyance)
+    // loadProcessingImage("https://arkenea.com/blog/wp-content/uploads/2016/04/Ajax-loader.gif");
+
+    // Specify search query terms
+    const searchURL = "https://www.googleapis.com/youtube/v3/search";
+    const APIKey = "AIzaSyBN-LJx3IzCrevK2yJd-TBcL3vuenEk4BQ";
+    
+    //Build search query
+    const query = {
+        q: `${searchTerm}`,
+        part: 'snippet',
+        key: `${APIKey}`
+    };
+    
+    // Execute search query
+    console.log($.getJSON(searchURL, query, callback));
 
 }
     
@@ -67,6 +75,12 @@ function queryYouTubeAPI(searchTerm) {
              alt="Search in progress indicator"/>`;
              
         $('.js-search-results').html(processingHTML);
+    }
+    
+    function receiveSearchResults(data) {
+    // When a search result is returned, process the search results
+    
+        console.log(data);
     }
     
     
