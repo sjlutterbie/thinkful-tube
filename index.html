@@ -28,34 +28,36 @@
           <label for="searchTerm">Search term:
             <input type="text" name="searchTerm" id="searchTerm" placeholder="Search term..." required>
           </label>
-          <input type="submit" value="Search">
+          <input type="submit" class="search-submit js-search-submit" value="Search">
         </form>
       </div>
-      <h2>Search results</h2>
-      <div class="search-results">
-        <!-- Displays the search results generated from the API call -->
-          <!-- Each search result includes a link to the channel the video came from -->
-        <div class="search-result">
-          <div class="thumbnail">
-            <!-- The search results include thumbnail images for each video -->
-              <!-- The thumbnails are clickable -->
-                <!-- v1: The thumbnails link to a page that plays the video -->
-                <!-- v2: The thumbnails make the video play in a lightbox -->
-            <a href="#" title="Describe video action"><img src="https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&h=350"
-                 alt="Search result description"
-                 style="width: 200px"/></a>
-          </div>
-          <div class="search-result-info">
-            <p class="search-result-title"><a href="#">Search result title</a></p>
-            <p class="search-result-channel"><a href="#">Search result channel</a></p>
+      <div class="search-results-container">
+        <h2>Search results</h2>
+        <div class="search-results js-search-results">
+          <!-- Displays the search results generated from the API call -->
+            <!-- Each search result includes a link to the channel the video came from -->
+          <div class="search-result">
+            <div class="thumbnail">
+              <!-- The search results include thumbnail images for each video -->
+                <!-- The thumbnails are clickable -->
+                  <!-- v1: The thumbnails link to a page that plays the video -->
+                  <!-- v2: The thumbnails make the video play in a lightbox -->
+              <a href="#" title="Describe video action"><img src="https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&h=350"
+                   alt="Search result description"
+                   style="width: 200px"/></a>
+            </div>
+            <div class="search-result-info">
+              <p class="search-result-title"><a href="#">Search result title</a></p>
+              <p class="search-result-channel"><a href="#">Search result channel</a></p>
+            </div>
           </div>
         </div>
       </div>
     <!-- Display previous/next buttons at the end of the results -->
       <!-- Use the previous/next page links from the JSON -->
       <div class="search-nav">
-        <button class="search-nav-button">Prev</button>
-        <button class="search-nav-button">Next</button>
+        <button class="search-nav-button js-search-nav-prev">Prev</button>
+        <button class="search-nav-button js-search-nav-next">Next</button>
       </div>
       
     </main>
