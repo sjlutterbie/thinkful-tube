@@ -8,7 +8,7 @@ function searchFormEventHandler() {
     
         // Store the search term
         let searchTerm = $('#searchTerm').val()
-    
+        
         // If search term doesn't exist...
         if (!searchTerm) {
             //Alert the user
@@ -21,7 +21,7 @@ function searchFormEventHandler() {
         // If search term exists...
     
             //Clear the search form
-            $('#searchTerm').val('');
+            //$('#searchTerm').val('');
     
             //Clear search results
             clearSearchResults();
@@ -39,12 +39,11 @@ function searchFormEventHandler() {
         $('.js-search-results').html('');
         
         //Hide search navigation links
-        $('.js-search-nav-prev').hide();
-        $('.js-search-nav-next').hide();
-            
+        $('.js-search-nav').hide();
+
     }
 
-function queryYouTubeAPI(searchTerm, callback) {
+function queryYouTubeAPI(searchTerm, callback, pageToken) {
     // Queries the YouTube API for a list of videos matching the provided search term
 
     // Load processing gif
@@ -54,12 +53,21 @@ function queryYouTubeAPI(searchTerm, callback) {
     const searchURL = "https://www.googleapis.com/youtube/v3/search";
     const APIKey = "AIzaSyBN-LJx3IzCrevK2yJd-TBcL3vuenEk4BQ";
     
+
     //Build search query
     const query = {
         q: `${searchTerm}`,
         part: 'snippet',
         key: `${APIKey}`
     };
+    
+    console.log(pageToken);
+    
+    if (pageToken) {
+        query.pageToken = `${pageToken}`;
+    }
+    
+    console.log(query);
     
     // Execute search query
     $.getJSON(searchURL, query, callback);
@@ -86,12 +94,9 @@ function queryYouTubeAPI(searchTerm, callback) {
     function receiveSearchResults(data) {
         // When a search result is returned, process the search results
         
-        console.log(`"receiveSearchResults" was called.`);
-        
         console.log(data);
         
         // Collect etag and pageTokens for future navigation
-        let eTag = data.etag;
         let nextPageToken = data.nextPageToken;
         let prevPageToken = data.prevPageToken;
         
@@ -103,11 +108,11 @@ function queryYouTubeAPI(searchTerm, callback) {
         
         //Render navigation buttons
         if (prevPageToken) {
-            renderNavButton('Prev', 'js-search-nav-prev', eTag, prevPageToken);
+            renderNavButton('Prev', 'js-search-nav', prevPageToken);
         }
         
         if (nextPageToken) {
-            renderNavButton('Next', 'js-search-nav-next', eTag, nextPageToken);
+            renderNavButton('Next', 'js-search-nav', nextPageToken);
         
         }
 
@@ -154,15 +159,12 @@ function renderSearchResult(item) {
     
 }    
 
-function renderNavButton (text, jsClass, etag, pageToken) {
+function renderNavButton (text, jsClass, pageToken) {
     // Render a "Prev" button
-    
-    console.log(etag);
     
     // Build 
     let buttonHTML = `
         <button class="search-nav-button ${jsClass}"
-            data-etag=${etag}
             data-pageToken="${pageToken}">
                 ${text}</button>
     `;
@@ -172,8 +174,51 @@ function renderNavButton (text, jsClass, etag, pageToken) {
     
 }
 
+function queryYouTubeAPINav(eTag, pageToken, callback) {
+    // For navigation: Run a YouTube API search query when eTag and pageToken are known
+    
+    // Load processing gif
+    loadProcessingImage("https://arkenea.com/blog/wp-content/uploads/2016/04/Ajax-loader.gif");
 
-// TODO: Run search based on etag & pagetoken
+    // Specify search query terms
+    const searchURL = "https://www.googleapis.com/youtube/v3/search";
+    const APIKey = "AIzaSyBN-LJx3IzCrevK2yJd-TBcL3vuenEk4BQ";
+    
+    //Build search query
+    const query = {
+        etag: `${eTag}`,
+        pageToken: `${pageToken}`,
+        part: 'snippet',
+        key: `${APIKey}`
+    };
+    
+
+    // Execute search query
+    $.getJSON(searchURL, query, callback);
+    
+}
+
+function searchResultsEventHandler() {
+    
+    // When a user clicks on a search nav button...
+    $('main').on('click', '.js-search-nav', function(e) {
+        e.preventDefault();
+        
+
+        // Extract eTag and pageToken from link
+        let pageToken = e.currentTarget.dataset.pagetoken;
+        
+        // Clear search results
+        clearSearchResults();
+        
+        let searchTerm = $('#searchTerm').val()
+        
+        // query YouTube API
+        queryYouTubeAPI(searchTerm, receiveSearchResults, pageToken);
+        
+    });
+    
+}
 
 // TODO: event Handler for prev/next nav buttons
 
@@ -191,6 +236,7 @@ function renderNavButton (text, jsClass, etag, pageToken) {
 function handleSearchApp() {
     //Load event handlers
     searchFormEventHandler();
+    searchResultsEventHandler();
 }
 
 /* TODO: App Launch Code! */
