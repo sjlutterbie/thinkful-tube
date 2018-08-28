@@ -19,10 +19,10 @@ function searchFormEventHandler() {
         }
     
         // If search term exists...
-    
-            //Clear the search form
-            //$('#searchTerm').val('');
-    
+
+            //Show search results header
+            $('.search-results-container h2').show();
+            
             //Clear search results
             clearSearchResults();
             
@@ -131,7 +131,7 @@ function renderSearchResult(item) {
     let resultHTML = `
         <div class="search-result">
             <div class="thumbnail">
-                <a href="${videoURL}" title="YouTube: ${videoTitle}">
+                <a href="${videoURL}" title="YouTube: ${videoTitle}" target="_blank">
                     <img src="${videoThumbnail}"
                          alt="Link to YouTube video, ${videoTitle}"
                          style="width: 200px"/>
@@ -213,8 +213,6 @@ function searchResultsEventHandler() {
     });
     
 }
-
-// TODO: event Handler for prev/next nav buttons
 
     
 /* TODO: When a search result is return, render the search results */
