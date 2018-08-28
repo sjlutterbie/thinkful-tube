@@ -78,10 +78,30 @@ function queryYouTubeAPI(searchTerm, callback) {
     }
     
     function receiveSearchResults(data) {
-    // When a search result is returned, process the search results
-    
-        console.log(data);
+        // When a search result is returned, process the search results
+        
+        //Extract results
+        data.items.map(item => {
+            let videoID = item.id.videoId;
+            let videoTitle = item.snippet.title;
+            let videoDesc = item.snippet.description;
+            let videoThumbnail = item.snippet.thumbnails.medium.url;
+            let channelID = item.snippet.channelId;
+            let channelTitle = item.snippet.channelTitle;
+            
+            console.log(`videoID: ${videoID}`);
+            console.log(`videoTitle: ${videoTitle}`);
+            console.log(`videoDesc: ${videoDesc}`);
+            console.log(`videoThumbnail: ${videoThumbnail}`);
+            console.log(`channelID: ${channelID}`);
+            console.log(`channelTitle: ${channelTitle}`);
+            
+        });
+        
     }
+    
+    
+    
     
     
 /* TODO: When a search result is return, render the search results */
