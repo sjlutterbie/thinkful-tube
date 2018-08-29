@@ -14,14 +14,17 @@
       <!-- CSS reset -->
       <link rel="stylesheet" type="text/css" href="reset.css">
       
+      <!-- Material Design dropshadows -->
+      <link rel="stylesheet" type="text/css" href="material-design.css">
+      
       <!-- Site styles -->
       <link rel="stylesheet" type="text/css" href="styles.css">
     
   </head>
   
   <body>
-    <header>
-      <div class="search-form-container">
+    <main role="main">
+      <div class="md-whiteframe-8dp search-form-container">
         <form class="search-form">
           <h1>Search YouTube</h1>
           <!-- A search form that contains a text field and a submit button -->
@@ -29,10 +32,8 @@
           <input type="submit" class="search-submit js-search-submit" value="Search">
         </form>
       </div>
-    </header>
-    <main role="main">
+
       <div class="search-results-container">
-        <h2>Search results</h2>
         <div class="search-results js-search-results">
           <!-- Search results will be displayed within this div -->
         </div>

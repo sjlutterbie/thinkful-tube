@@ -22,29 +22,39 @@
 
 /* Page settings */
 
+html, body, main {
+  height: 100%;
+}
+
+
 html {
   width: 100%;
 }
+
 
 body {
   color: #000;
   background-color: #fff;
   font-family: 'Roboto', 'San Francisco', sans-serif;
+  overflow: hidden;
 }
 
-main {
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: flex-start;
-}
+  main {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 4;
+  }
 
 /* Search form */
 
 .search-form-container {
+  z-index: 8;
+  flex: 0 0 auto;
   text-align: center;
   width: 100%;
   background: var(--primary-dark);
@@ -70,6 +80,7 @@ input[type="text"] {
   margin-left: 4px;
   margin-right: 4px;
   max-width: 90%;
+  border-radius: 2px;
 }
 
   input[type="text"]::placeholder {
@@ -80,18 +91,31 @@ input[type="submit"] {
   background-color: var(--secondary-light);
   color: var(--on-secondary-light);
   font-family: 'Roboto', 'San Francisco', sans-serif;
+  border-radius: 2px;
 }
 
 
 /* Search Results */
 
 .search-results-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  position: relative;
 }
 
-.search-results-container h2 {
-  /* Start hidden */
-  display: none;
+.search-result {
+  border: 1px solid var(--secondary-light);
+  padding: 8px;
+  margin-top: 16px;
+  margin-left: 8px;
+  margin-right: 8px;
+  border-radius: 2px;
 }
+
 
 
 /* Light Box */

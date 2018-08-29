@@ -20,9 +20,6 @@ function searchFormEventHandler() {
     
         // If search term exists...
 
-            //Show search results header
-            $('.search-results-container h2').show();
-            
             //Clear search results
             clearSearchResults();
             
@@ -131,7 +128,7 @@ function renderSearchResult(item) {
 
     // Build result HTML
     let resultHTML = `
-        <div class="search-result">
+        <div class="md-whiteframe-4dp search-result">
             <div class="thumbnail">
                     <img src="${videoThumbnail}"
                          alt="Play YouTube video, ${videoTitle}"
