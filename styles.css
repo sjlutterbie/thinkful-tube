@@ -1,2 +1,27 @@
-/* TO DO: Active reset.css before beginning styling! */
+/* TODO: Active reset.css before beginning styling! */
+/* TODO: Search-nav buttons should start hidden, by default. */
+/* TODO: "Search results" header should start hidden, by default */
 
+
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.8);
+  
+}
+
+.lightbox iframe {
+  max-width: 90%;
+  max-height: 80%;
+  margin-top: 10%;
+}
+
+.lightbox:target {
+  outline: none;
+}

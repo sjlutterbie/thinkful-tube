@@ -4,7 +4,7 @@ function searchFormEventHandler() {
 
     // When a user preses on the "Search" button...
     $('main').on('click', '.js-search-submit', function(e) {
-        e.preventDefault()
+        e.preventDefault();
     
         // Store the search term
         let searchTerm = $('#searchTerm').val()
@@ -131,11 +131,10 @@ function renderSearchResult(item) {
     let resultHTML = `
         <div class="search-result">
             <div class="thumbnail">
-                <a href="${videoURL}" title="YouTube: ${videoTitle}" target="_blank">
                     <img src="${videoThumbnail}"
-                         alt="Link to YouTube video, ${videoTitle}"
-                         style="width: 200px"/>
-                </a>
+                         alt="Play YouTube video, ${videoTitle}"
+                         style="width: 200px"
+                         data-videoid="${videoID}"/>
             </div>
             <div class="search-result-info">
                 <p class="search-result-title">
@@ -212,16 +211,59 @@ function searchResultsEventHandler() {
         
     });
     
-}
-
+    $('main').on('click', '.thumbnail img', function(e) {
+       e.preventDefault();
+       
+       // Extract video source from image dataset
+       let videoID = e.currentTarget.dataset.videoid;
+       
+       // Set iframe src
+       renderLightBox(videoID);
+        
+    });
     
-/* TODO: When a search result is return, render the search results */
-    /* TODO: Show the "Search results" header, if hidden */
+}
 
 
 /* TODO: When the user clicks on a video thumbnail... */
     /* TODO: Play the video in a lightbox */
+
+function renderLightBox(videoID) {
     
+    // Create the iframe HTML
+    let iframeHTML = `
+        <iframe id="player" type="text/html" width="640" height="390"
+            src="https://www.youtube.com/embed/${videoID}?enablejsapi=1&origin=${window.location.href}""
+            frameborder="0"></iframe>
+    `;
+    
+    // Render the HTML
+    $('.lightbox').html(iframeHTML);
+    
+    
+    // Display the lightbox
+    $('.js-lightbox').show();
+    
+}
+
+function lightBoxHandler() {
+    
+    //When the user clicks on the lightBox...
+    $(document).on('click', '.lightbox', function(e) {
+       e.preventDefault();
+       
+       // Hide lightbox
+       $('.lightbox').hide();
+       
+       //Remove iframe (stop video)
+       $('.lightbox iframe').attr('src', null);
+
+    });
+    
+}
+
+
+
 /* TODO: When the user clicks outside the lightbox... */
     /* Make the video stop and the lightbox disappear */
     
@@ -229,6 +271,8 @@ function handleSearchApp() {
     //Load event handlers
     searchFormEventHandler();
     searchResultsEventHandler();
+    lightBoxHandler();
+    
 }
 
 /* TODO: App Launch Code! */
