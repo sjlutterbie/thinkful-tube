@@ -3,7 +3,7 @@
 function searchFormEventHandler() {
 
     // When a user preses on the "Search" button...
-    $('main').on('click', '.js-search-submit', function(e) {
+    $('html').on('click', '.js-search-submit', function(e) {
         e.preventDefault();
     
         // Store the search term
@@ -20,9 +20,6 @@ function searchFormEventHandler() {
     
         // If search term exists...
 
-            //Show search results header
-            $('.search-results-container h2').show();
-            
             //Clear search results
             clearSearchResults();
             
@@ -58,7 +55,8 @@ function queryYouTubeAPI(searchTerm, callback, pageToken) {
     const query = {
         q: `${searchTerm}`,
         part: 'snippet',
-        key: `${APIKey}`
+        key: `${APIKey}`,
+        maxResults: 20
     };
     
     if (pageToken) {
@@ -89,6 +87,8 @@ function queryYouTubeAPI(searchTerm, callback, pageToken) {
     
     function receiveSearchResults(data) {
         // When a search result is returned, process the search results
+        
+        console.log(data);
         
         // Collect etag and pageTokens for future navigation
         let nextPageToken = data.nextPageToken;
@@ -129,11 +129,10 @@ function renderSearchResult(item) {
 
     // Build result HTML
     let resultHTML = `
-        <div class="search-result">
+        <div class="md-whiteframe-4dp search-result">
             <div class="thumbnail">
                     <img src="${videoThumbnail}"
                          alt="Play YouTube video, ${videoTitle}"
-                         style="width: 200px"
                          data-videoid="${videoID}"/>
             </div>
             <div class="search-result-info">
@@ -194,7 +193,7 @@ function queryYouTubeAPINav(eTag, pageToken, callback) {
 function searchResultsEventHandler() {
     
     // When a user clicks on a search nav button...
-    $('main').on('click', '.js-search-nav', function(e) {
+    $('html').on('click', '.js-search-nav', function(e) {
         e.preventDefault();
         
 
@@ -232,13 +231,13 @@ function renderLightBox(videoID) {
     
     // Create the iframe HTML
     let iframeHTML = `
-        <iframe id="player" type="text/html" width="640" height="390"
+        <iframe id="player" type="text/html"
             src="https://www.youtube.com/embed/${videoID}?enablejsapi=1&origin=${window.location.href}""
             frameborder="0"></iframe>
     `;
     
     // Render the HTML
-    $('.lightbox').html(iframeHTML);
+    $('.embed-container').html(iframeHTML);
     
     
     // Display the lightbox
@@ -249,14 +248,14 @@ function renderLightBox(videoID) {
 function lightBoxHandler() {
     
     //When the user clicks on the lightBox...
-    $(document).on('click', '.lightbox', function(e) {
+    $('html').on('click', '.lightbox', function(e) {
        e.preventDefault();
        
        // Hide lightbox
        $('.lightbox').hide();
        
        //Remove iframe (stop video)
-       $('.lightbox iframe').attr('src', null);
+       $('.embed-container iframe').attr('src', null);
 
     });
     

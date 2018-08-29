@@ -1,7 +1,178 @@
-/* TODO: Active reset.css before beginning styling! */
-/* TODO: Search-nav buttons should start hidden, by default. */
-/* TODO: "Search results" header should start hidden, by default */
+* {
+  box-sizing: border-box;
+}
 
+/* COLOR DEFINITIONS */
+
+:root {
+  --primary-color: #ff0000;
+    --on-primary-color: #000;
+  --primary-light: #ff5a36;
+    --on-primary-light: #000;
+  --primary-dark: #c20000;
+    --on-primary-dark: #fff;
+  
+  --secondary-color: #909090;
+    --on-secondary-color: #000;
+  --secondary-light: #c0c0c0;
+    --on-secondary-light: #000;
+  --secondary-dark: #636363;
+    --on-secondary-dark: #fff;  
+}
+
+/* Page settings */
+
+html, body, main {
+  height: 100%;
+}
+
+
+html {
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+body {
+  color: #000;
+  background-color: #fff;
+  font-family: 'Roboto', 'San Francisco', sans-serif;
+  overflow: hidden;
+}
+
+  main {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 4;
+  }
+
+/* Search form */
+
+.search-form-container {
+  z-index: 8;
+  flex: 0 0 auto;
+  text-align: center;
+  width: 100%;
+  background: var(--primary-dark);
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+h1 {
+  color: var(--on-primary-dark);
+  font-size: 40px;
+  font-weight: bold;
+}
+
+input {
+  margin: 4px;
+  padding: 4px;
+  font-size: 24px;
+  border: none;
+}
+
+input[type="text"] {
+  font-family: 'Roboto', 'San Francisco', sans-serif;
+  margin-left: 4px;
+  margin-right: 4px;
+  max-width: 90%;
+  border-radius: 2px;
+}
+
+  input[type="text"]::placeholder {
+    color: var(--secondary-color);
+  }
+  
+input[type="submit"] {
+  background-color: var(--secondary-light);
+  color: var(--on-secondary-light);
+  font-family: 'Roboto', 'San Francisco', sans-serif;
+  border-radius: 2px;
+}
+
+
+/* Search Results */
+
+.search-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.search-result {
+  border: 1px solid var(--secondary-light);
+  padding: 8px;
+  margin-top: 16px;
+  margin-left: 8px;
+  margin-right: 8px;
+  border-radius: 2px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+  .search-result:hover {
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  .search-result img {
+    max-height: 112px;
+  }
+
+  .search-result-info {
+    text-align: center;
+  }
+  
+  .search-result-info p {
+    margin-top: 8px;
+  }
+  
+  .search-result-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  
+
+/* Search nav buttons */
+
+.search-nav {
+  padding: 8px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-content: stretch;
+}
+
+
+.search-nav-button {
+  background-color: var(--primary-dark);
+  color: var(--on-primary-dark);
+  font-family: 'Roboto', 'San Francisco', sans-serif;
+  border-radius: 2px;
+  padding: 8px;
+  height: 40px;
+  margin-left: 4px;
+  margin-right: 4px;
+  font-size: 24px;
+  border: none;
+}
+
+/* Light Box */
 
 .lightbox {
     display: none;
@@ -12,16 +183,76 @@
     text-align: center;
     top: 0;
     left: 0;
-    background: rgba(0,0,0,.8);
+    background: rgba(255,255,255,.8);
+}
+
+  .lightbox:target {
+    outline: none;
+  }
+
+.embed-container {
+  position: relative;
+  padding-top: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+    .embed-container iframe {
+      position: absolute;
+      padding-top: 10%;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 90%;
+      max-width: 1000px;
+      height: 90%;
+    }
+
+/* Screen adjustments */
+
+@media only screen and (min-width: 360px) {
+  
+  h1 {
+    font-size: 46px;
+  }
   
 }
 
-.lightbox iframe {
-  max-width: 90%;
-  max-height: 80%;
-  margin-top: 10%;
+@media only screen and (min-width: 446px) {
+  
+  h1 {
+    font-size: 58px;
+  }
+  
 }
 
-.lightbox:target {
-  outline: none;
+
+@media only screen and (min-width: 600px) {
+  
+  .search-result {
+    flex-flow: row nowrap;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+  
+  .search-result img {
+    width: 200px;
+  }
+  
+  .search-result-info {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    padding: 8px;
+  }
+  
+  .search-result-info p {
+    margin-top: 0px;
+  }
+  
+  .search-result-title {
+  }
+
 }
+
