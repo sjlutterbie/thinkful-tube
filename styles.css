@@ -31,6 +31,9 @@ html {
   width: 100%;
 }
 
+::-webkit-scrollbar {
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
 
 body {
   color: #000;
@@ -121,6 +124,16 @@ input[type="submit"] {
   align-items: center;
 }
 
+  .search-result:hover {
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+  }
+
+  .search-result img {
+    max-height: 112px;
+  }
+
   .search-result-info {
     text-align: center;
   }
@@ -142,7 +155,7 @@ input[type="submit"] {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  align-content: center;
+  align-content: stretch;
 }
 
 
@@ -151,8 +164,8 @@ input[type="submit"] {
   color: var(--on-primary-dark);
   font-family: 'Roboto', 'San Francisco', sans-serif;
   border-radius: 2px;
-  height: 35px;
   padding: 8px;
+  height: 40px;
   margin-left: 4px;
   margin-right: 4px;
   font-size: 24px;
@@ -170,7 +183,7 @@ input[type="submit"] {
     text-align: center;
     top: 0;
     left: 0;
-    background: rgba(0,0,0,.8);
+    background: rgba(255,255,255,.8);
 }
 
   .lightbox:target {
@@ -191,6 +204,7 @@ input[type="submit"] {
       top: 50%;
       transform: translateX(-50%) translateY(-50%);
       width: 90%;
+      max-width: 1000px;
       height: 90%;
     }
 

@@ -55,7 +55,8 @@ function queryYouTubeAPI(searchTerm, callback, pageToken) {
     const query = {
         q: `${searchTerm}`,
         part: 'snippet',
-        key: `${APIKey}`
+        key: `${APIKey}`,
+        maxResults: 20
     };
     
     if (pageToken) {
