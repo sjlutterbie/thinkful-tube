@@ -90,6 +90,8 @@ function queryYouTubeAPI(searchTerm, callback, pageToken) {
     function receiveSearchResults(data) {
         // When a search result is returned, process the search results
         
+        console.log(data);
+        
         // Collect etag and pageTokens for future navigation
         let nextPageToken = data.nextPageToken;
         let prevPageToken = data.prevPageToken;
@@ -232,13 +234,13 @@ function renderLightBox(videoID) {
     
     // Create the iframe HTML
     let iframeHTML = `
-        <iframe id="player" type="text/html" width="640" height="390"
+        <iframe id="player" type="text/html"
             src="https://www.youtube.com/embed/${videoID}?enablejsapi=1&origin=${window.location.href}""
             frameborder="0"></iframe>
     `;
     
     // Render the HTML
-    $('.lightbox').html(iframeHTML);
+    $('.embed-container').html(iframeHTML);
     
     
     // Display the lightbox
@@ -256,7 +258,7 @@ function lightBoxHandler() {
        $('.lightbox').hide();
        
        //Remove iframe (stop video)
-       $('.lightbox iframe').attr('src', null);
+       $('.embed-container iframe').attr('src', null);
 
     });
     

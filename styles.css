@@ -3,6 +3,10 @@
 /* TODO: "Search results" header should start hidden, by default */
 
 
+
+
+/* Light Box */
+
 .lightbox {
     display: none;
     position: fixed;
@@ -13,15 +17,27 @@
     top: 0;
     left: 0;
     background: rgba(0,0,0,.8);
-  
 }
 
-.lightbox iframe {
-  max-width: 90%;
-  max-height: 80%;
-  margin-top: 10%;
-}
+  .lightbox:target {
+    outline: none;
+  }
 
-.lightbox:target {
-  outline: none;
+.embed-container {
+  position: relative;
+  padding-top: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
 }
+    .embed-container iframe {
+      position: absolute;
+      padding-top: 10%;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 90%;
+      height: 90%;
+    }
+
+
