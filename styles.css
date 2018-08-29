@@ -141,8 +141,8 @@ input[type="submit"] {
   padding: 8px;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
-  align-content: space-around;
+  justify-content: center;
+  align-content: center;
 }
 
 
@@ -215,6 +215,30 @@ input[type="submit"] {
 
 @media only screen and (min-width: 600px) {
   
+  .search-result {
+    flex-flow: row nowrap;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+  
+  .search-result img {
+    width: 200px;
+  }
+  
+  .search-result-info {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    padding: 8px;
+  }
+  
+  .search-result-info p {
+    margin-top: 0px;
+  }
+  
+  .search-result-title {
+  }
 
 }
 
