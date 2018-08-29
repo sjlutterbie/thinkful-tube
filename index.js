@@ -132,7 +132,6 @@ function renderSearchResult(item) {
             <div class="thumbnail">
                     <img src="${videoThumbnail}"
                          alt="Play YouTube video, ${videoTitle}"
-                         style="width: 200px"
                          data-videoid="${videoID}"/>
             </div>
             <div class="search-result-info">

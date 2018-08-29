@@ -114,9 +114,25 @@ input[type="submit"] {
   margin-left: 8px;
   margin-right: 8px;
   border-radius: 2px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-
+  .search-result-info {
+    text-align: center;
+  }
+  
+  .search-result-info p {
+    margin-top: 8px;
+  }
+  
+  .search-result-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  
 
 /* Light Box */
 
