@@ -3,7 +3,7 @@
 function searchFormEventHandler() {
 
     // When a user preses on the "Search" button...
-    $('main').on('click', '.js-search-submit', function(e) {
+    $('html').on('click', '.js-search-submit', function(e) {
         e.preventDefault();
     
         // Store the search term
@@ -196,7 +196,7 @@ function queryYouTubeAPINav(eTag, pageToken, callback) {
 function searchResultsEventHandler() {
     
     // When a user clicks on a search nav button...
-    $('main').on('click', '.js-search-nav', function(e) {
+    $('html').on('click', '.js-search-nav', function(e) {
         e.preventDefault();
         
 
@@ -251,7 +251,7 @@ function renderLightBox(videoID) {
 function lightBoxHandler() {
     
     //When the user clicks on the lightBox...
-    $(document).on('click', '.lightbox', function(e) {
+    $('html').on('click', '.lightbox', function(e) {
        e.preventDefault();
        
        // Hide lightbox

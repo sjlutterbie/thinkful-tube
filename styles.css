@@ -1,8 +1,97 @@
-/* TODO: Active reset.css before beginning styling! */
-/* TODO: Search-nav buttons should start hidden, by default. */
-/* TODO: "Search results" header should start hidden, by default */
+* {
+  box-sizing: border-box;
+}
+
+/* COLOR DEFINITIONS */
+
+:root {
+  --primary-color: #ff0000;
+    --on-primary-color: #000;
+  --primary-light: #ff5a36;
+    --on-primary-light: #000;
+  --primary-dark: #c20000;
+    --on-primary-dark: #fff;
+  
+  --secondary-color: #909090;
+    --on-secondary-color: #000;
+  --secondary-light: #c0c0c0;
+    --on-secondary-light: #000;
+  --secondary-dark: #636363;
+    --on-secondary-dark: #fff;  
+}
+
+/* Page settings */
+
+html {
+  width: 100%;
+}
+
+body {
+  color: #000;
+  background-color: #fff;
+  font-family: 'Roboto', 'San Francisco', sans-serif;
+}
+
+main {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Search form */
+
+.search-form-container {
+  text-align: center;
+  width: 100%;
+  background: var(--primary-dark);
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+h1 {
+  color: var(--on-primary-dark);
+  font-size: 40px;
+  font-weight: bold;
+}
+
+input {
+  margin: 4px;
+  padding: 4px;
+  font-size: 24px;
+  border: none;
+}
+
+input[type="text"] {
+  font-family: 'Roboto', 'San Francisco', sans-serif;
+  margin-left: 4px;
+  margin-right: 4px;
+  max-width: 90%;
+}
+
+  input[type="text"]::placeholder {
+    color: var(--secondary-color);
+  }
+  
+input[type="submit"] {
+  background-color: var(--secondary-light);
+  color: var(--on-secondary-light);
+  font-family: 'Roboto', 'San Francisco', sans-serif;
+}
 
 
+/* Search Results */
+
+.search-results-container {
+}
+
+.search-results-container h2 {
+  /* Start hidden */
+  display: none;
+}
 
 
 /* Light Box */
@@ -40,4 +129,28 @@
       height: 90%;
     }
 
+
+/* Screen adjustments */
+
+@media only screen and (min-width: 360px) {
+  
+  h1 {
+    font-size: 46px;
+  }
+  
+}
+
+@media only screen and (min-width: 446px) {
+  
+  h1 {
+    font-size: 58px;
+  }
+  
+}
+
+
+@media only screen and (min-width: 600px) {
+  
+
+}
 

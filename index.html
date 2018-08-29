@@ -12,7 +12,7 @@
     
     <!-- Styles and resources -->
       <!-- CSS reset -->
-      <!-- <link rel="stylesheet" type="text/css" href="reset.css"> -->
+      <link rel="stylesheet" type="text/css" href="reset.css">
       
       <!-- Site styles -->
       <link rel="stylesheet" type="text/css" href="styles.css">
@@ -20,20 +20,19 @@
   </head>
   
   <body>
-    <main role="main">
+    <header>
       <div class="search-form-container">
-        <h2>Search form</h2>
         <form class="search-form">
+          <h1>Search YouTube</h1>
           <!-- A search form that contains a text field and a submit button -->
-          <label for="searchTerm">Search term:
-            <input type="text" name="searchTerm" id="searchTerm" placeholder="Search term..." required>
-          </label>
+            <input type="text" name="searchTerm" id="searchTerm" placeholder="Search term..." aria-label="Search field" required>
           <input type="submit" class="search-submit js-search-submit" value="Search">
         </form>
       </div>
-      
+    </header>
+    <main role="main">
       <div class="search-results-container">
-        <h2 style="display: none;">Search results</h2>
+        <h2>Search results</h2>
         <div class="search-results js-search-results">
           <!-- Search results will be displayed within this div -->
         </div>
