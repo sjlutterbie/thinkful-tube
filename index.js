@@ -156,13 +156,14 @@ function renderNavButton (text, jsClass, pageToken) {
     
     // Build 
     let buttonHTML = `
-        <button class="search-nav-button ${jsClass}"
+        <button class="md-whiteframe-4dp search-nav-button ${jsClass}"
             data-pageToken="${pageToken}">
                 ${text}</button>
     `;
     
-    // Render HTML
-    $('.search-nav').append(buttonHTML);
+    // Render HTML (at beginning and end)
+    $('.search-nav-end').append(buttonHTML);
+    $('.search-nav-beginning').append(buttonHTML);
     
 }
 

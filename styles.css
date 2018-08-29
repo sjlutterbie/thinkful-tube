@@ -26,14 +26,15 @@ html, body, main {
   height: 100%;
 }
 
+::-webkit-scrollbar {
+   background: transparent;   /* optional: just make scrollbar invisible */
+}
+
 
 html {
   width: 100%;
 }
 
-::-webkit-scrollbar {
-    background: transparent;  /* optional: just make scrollbar invisible */
-}
 
 body {
   color: #000;
@@ -163,12 +164,13 @@ input[type="submit"] {
 
 /* Search nav buttons */
 
-.search-nav {
+.search-nav-beginning, .search-nav-end {
   padding: 8px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-content: stretch;
+  min-height: 50px;
 }
 
 
