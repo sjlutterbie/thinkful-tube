@@ -130,7 +130,7 @@ function renderSearchResult(item) {
     // Build result HTML
     let resultHTML = `
         <div class="md-whiteframe-4dp search-result">
-            <div class="thumbnail">
+            <div class="thumbnail" tabindex="0">
                     <img src="${videoThumbnail}"
                          alt="Play YouTube video, ${videoTitle}"
                          data-videoid="${videoID}"/>
@@ -211,6 +211,7 @@ function searchResultsEventHandler() {
         
     });
     
+    // When a user clicks on a thumbnail
     $('main').on('click', '.thumbnail img', function(e) {
        e.preventDefault();
        
